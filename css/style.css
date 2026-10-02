@@ -1,0 +1,143 @@
+/* ---------- Tokens ---------- */
+
+:root {
+  /* Blackish purple, tuned to sit just over the WCAG AAA threshold
+     on white: #684f7b on #fff = 7.02:1 (AAA needs 7:1). */
+  --ink: #684f7b;
+  --paper: #ffffff;
+
+  --sans: "Trispace", ui-monospace, monospace;
+  --serif: "Newsreader", Georgia, serif;
+
+  /* 40% of a 14" MacBook Pro's default 1512px-wide viewport. */
+  --measure: 605px;
+  /* Left inset of the column; everything hangs from this edge. */
+  --inset: clamp(24px, 6vw, 96px);
+
+  --step: 1.6rem; /* base vertical rhythm (one line of body text) */
+}
+
+/* ---------- Base ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 15px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 300;
+  line-height: 1.6;
+  text-align: left;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Paragraphs: first-line indent, no gap between them. */
+p {
+  margin: 0;
+  text-indent: 2em;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+a {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- Layout ---------- */
+
+/* The column: hard left, generous empty space to the right. */
+.wrap {
+  max-width: calc(var(--measure) + var(--inset));
+  padding: calc(var(--step) * 3) 0 calc(var(--step) * 4) var(--inset);
+}
+
+/* Images may break out of the column to the right. */
+.breakout {
+  width: calc(100vw - var(--inset) * 2);
+  max-width: 1200px;
+}
+
+.section {
+  margin-top: calc(var(--step) * 3);
+}
+
+.section > h2 {
+  margin-bottom: var(--step);
+}
+
+/* ---------- Site header ---------- */
+
+.site-header {
+  display: flex;
+  gap: 2em;
+  margin-bottom: calc(var(--step) * 4);
+}
+
+.site-header a {
+  text-decoration: none;
+}
+
+.site-header a[aria-current="page"],
+.site-header a:hover {
+  text-decoration-line: underline;
+}
+
+/* ---------- Home ---------- */
+
+.intro p {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  line-height: 1.45;
+  font-weight: 300;
+}
+
+.index li {
+  display: flex;
+  gap: 2em;
+}
+
+.index .year {
+  flex: 0 0 4ch;
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  margin-top: calc(var(--step) * 5);
+}
