@@ -207,6 +207,10 @@ img {
   --indent: 60px;
   position: relative;
   transition: transform 0.8s ease;
+  /* Hand the card to the GPU as its own layer, so a move this small
+     glides at sub-pixel steps instead of snapping 1px at a time. */
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .card:hover,
@@ -233,9 +237,7 @@ img {
   margin-bottom: var(--step);
   padding-left: var(--indent);
   font-family: var(--serif);
-  font-size: 2.625rem; /* 42px: 3 × the 14px paragraph size */
-  font-weight: 400;
-  line-height: 1.15;
+  font-weight: 300;
 }
 
 .card h3 a {
