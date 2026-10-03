@@ -277,6 +277,20 @@ img {
   opacity: 1;
 }
 
+/* Meanwhile everything else on the card eases back to 92% opacity.
+   The title's link is dimmed rather than the heading itself, so the
+   wild card (which belongs to the heading) stays at full strength. */
+.labels,
+.card h3 a,
+.card img {
+  transition: opacity 0.2s ease;
+}
+
+.card:hover :is(.labels, h3 a, img),
+.card:focus-within :is(.labels, h3 a, img) {
+  opacity: 0.92;
+}
+
 .card h3 a {
   text-decoration: none;
 }
