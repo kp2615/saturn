@@ -194,6 +194,61 @@ img {
   flex: 0 0 4ch;
 }
 
+/* ---------- Work cards ---------- */
+
+.cards > li + li {
+  margin-top: calc(var(--step) * 3);
+}
+
+/* The whole card is one link: the heading's link is stretched over
+   the card, so the image and labels are clickable too. */
+.card {
+  position: relative;
+}
+
+.card img {
+  width: 100%;
+  margin-bottom: var(--step);
+}
+
+.card h3 {
+  padding-left: 1rem;
+  font-family: var(--serif);
+  font-size: 2.625rem; /* 42px: 3 × the 14px paragraph size */
+  line-height: 1.15;
+}
+
+/* The slash: hangs in the indent, takes no space, and, being generated
+   content, isn't selected or copied with the text. The "/ ''" part
+   gives it empty alt text so screen readers skip it too. With no
+   top/bottom set, it stays on the heading's first line; left: 0 is
+   the card's (and so the column's) left edge. */
+.card h3::before {
+  content: "/";
+  content: "/" / "";
+  position: absolute;
+  left: 0;
+  color: color-mix(in srgb, var(--ink) 50%, var(--paper));
+}
+
+.card h3 a {
+  text-decoration: none;
+}
+
+/* Hovering anywhere on the card therefore shows the heading's arrow. */
+.card h3 a::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 2em;
+  margin-top: 6px;
+}
+
 /* ---------- Footer ---------- */
 
 .site-footer {
