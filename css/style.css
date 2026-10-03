@@ -31,6 +31,10 @@
   --level-4: calc(var(--level-3) * 1.125);    /* 19.93px  */
   --level-5: calc(var(--level-4) * 1.125);    /* 22.43px  */
   --level-6: calc(var(--level-5) * 1.125);    /* 25.23px  */
+  --level-7: calc(var(--level-6) * 1.125);    /* 28.39px  */
+  --level-8: calc(var(--level-7) * 1.125);    /* 31.93px  */
+  --level-9: calc(var(--level-8) * 1.125);    /* 35.93px  */
+  --level-10: calc(var(--level-9) * 1.125);   /* 40.42px  */
   --level--1: calc(var(--level-1) / 1.125);   /* 12.44px  */
   --level--2: calc(var(--level--1) / 1.125);  /* 11.06px  */
   --level--3: calc(var(--level--2) / 1.125);  /* 9.83px   */
@@ -250,8 +254,9 @@ img {
   margin-bottom: var(--step);
   padding-left: var(--indent);
   font-family: var(--serif);
-  font-size: var(--level-3);
-  font-weight: 300;
+  font-size: var(--level-10);
+  font-weight: 400;
+  line-height: 1.15;
 }
 
 .card h3 a {
