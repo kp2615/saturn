@@ -5,14 +5,20 @@
      on white: #684f7b on #fff = 7.02:1 (AAA needs 7:1). */
   --ink: #684f7b;
   --paper: #ffffff;
+  --flag: #ff00ff; /* magenta: marks the current page */
 
   --sans: "Trispace", ui-monospace, monospace;
   --serif: "Newsreader", Georgia, serif;
+  /* The operating system's own UI face: San Francisco, Segoe UI, Roboto… */
+  --system: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
 
   /* 40% of a 14" MacBook Pro's default 1512px-wide viewport. */
   --measure: 605px;
   /* Left inset of the column; everything hangs from this edge. */
-  --inset: clamp(24px, 6vw, 96px);
+  --inset: clamp(16px, 4vw, 64px);
+  /* Distance from the top of the window to the first line of text. */
+  --top: calc(var(--step) * 2);
 
   --step: 1.5rem; /* base vertical rhythm: 24px */
 }
@@ -36,7 +42,7 @@ body {
   color: var(--ink);
   font-family: var(--sans);
   font-size: 0.875rem; /* 14px, all text for now */
-  font-weight: 300;
+  font-weight: 475;
   line-height: 1.6;
   text-align: left;
   -webkit-font-smoothing: antialiased;
@@ -53,7 +59,7 @@ h2,
 h3 {
   margin: 0;
   font-size: inherit;
-  font-weight: 400;
+  font-weight: inherit;
 }
 
 a {
@@ -85,7 +91,7 @@ img {
 /* The column: hard left, generous empty space to the right. */
 .wrap {
   max-width: calc(var(--measure) + var(--inset));
-  padding: calc(var(--step) * 3) 0 calc(var(--step) * 4) var(--inset);
+  padding: var(--top) 0 calc(var(--step) * 4) var(--inset);
 }
 
 /* Images may break out of the column to the right. */
@@ -102,24 +108,57 @@ img {
   margin-bottom: var(--step);
 }
 
-/* ---------- Site header ---------- */
+/* ---------- Site nav ---------- */
 
-.site-header {
-  display: flex;
-  gap: 2em;
-  margin-bottom: calc(var(--step) * 4);
+/*
+  Pinned to the right edge; it never scrolls. Its first line shares a
+  baseline with the first line of text in the column.
+
+  How the baselines line up: both the nav and the lead paragraph trim
+  their first line down to the top of the capital letters (text-box),
+  so each one's baseline sits exactly one cap-height below its top.
+  The two fonts have different cap heights, so the nav starts lower by
+  the difference: Trispace's cap height is 0.7em, the system font's is 1cap.
+*/
+.site-nav {
+  position: fixed;
+  top: calc(var(--top) + 0.7em - 1cap);
+  right: var(--inset);
+  font-family: var(--system);
+  text-box: trim-start cap alphabetic;
 }
 
-.site-header a {
+.site-nav a {
   text-decoration: none;
 }
 
-.site-header a[aria-current="page"],
-.site-header a:hover {
+.site-nav a:hover {
   text-decoration-line: underline;
 }
 
+/* The flag: a small magenta dot hanging to the left of the current page,
+   so the link text itself stays aligned with the others. */
+.site-nav a[aria-current="page"]::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-left: -14px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: var(--flag);
+  vertical-align: middle;
+}
+
 /* ---------- Home ---------- */
+
+/* The opening paragraph is the one exception to the indent rule. Its
+   first line is trimmed to cap height so it can share a baseline with
+   the nav (see .site-nav). */
+.lead {
+  text-indent: 0;
+  text-box: trim-start cap alphabetic;
+}
 
 .index li {
   display: flex;
