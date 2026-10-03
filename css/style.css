@@ -200,19 +200,37 @@ img {
   margin-top: calc(var(--step) * 3);
 }
 
-/* The whole card is one link: the heading's link is stretched over
-   the card, so the image and labels are clickable too. */
+/* The whole card is one link: the title's link is stretched over the
+   card, so the labels and image are clickable too. On hover the card
+   drifts 3px to the right, slowly. */
 .card {
+  --indent: 60px;
   position: relative;
+  transition: transform 0.8s ease;
 }
 
-.card img {
-  width: 100%;
-  margin-bottom: var(--step);
+.card:hover,
+.card:focus-within {
+  transform: translateX(3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+}
+
+.labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 2em;
+  margin-bottom: 6px;
+  padding-left: var(--indent);
+  font-size: 0.75rem; /* 12px */
 }
 
 .card h3 {
-  --indent: 60px;
+  margin-bottom: var(--step);
   padding-left: var(--indent);
   font-family: var(--serif);
   font-size: 2.625rem; /* 42px: 3 × the 14px paragraph size */
@@ -220,45 +238,25 @@ img {
   line-height: 1.15;
 }
 
-/* The slash: sits in the indent and takes no space. It's on the same
-   line as the title (an inline-block pulled back by a negative margin
-   exactly as wide as the indent), so it shares the title's baseline.
-   As generated content it isn't selected or copied with the text, and
-   the "/ ''" gives it empty alt text so screen readers skip it. */
-.card h3::before {
-  content: "/";
-  content: "/" / "";
-  display: inline-block;
-  width: var(--indent);
-  margin-left: calc(var(--indent) * -1);
-  color: color-mix(in srgb, var(--ink) 50%, var(--paper));
-}
-
 .card h3 a {
   text-decoration: none;
 }
 
-/* Hovering anywhere on the card therefore shows the heading's arrow. */
 .card h3 a::before {
   content: "";
   position: absolute;
   inset: 0;
 }
 
-.labels {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 12px;
+/* No hover arrow on card titles; the card's drift is the hover cue. */
+.card h3 a::after {
+  content: none;
 }
 
-/* Pills: the text colour screened back to 20% behind the label. */
-.labels li {
-  padding: 4px;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--ink) 20%, var(--paper));
-  font-size: 0.75rem; /* 12px */
-  line-height: 1;
+.card img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
 }
 
 /* ---------- Footer ---------- */
