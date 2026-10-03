@@ -118,6 +118,13 @@ img {
   height: auto;
 }
 
+/* Optical alignment: js/optical.js measures how much empty space the
+   first letter has before its ink and stores it in --optical; this pulls
+   the element left by that amount so the ink itself sits on the edge. */
+[data-optical] {
+  margin-left: calc(var(--optical, 0px) * -1);
+}
+
 /* ---------- Layout ---------- */
 
 /* The column: hard left, generous empty space to the right. */
