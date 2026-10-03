@@ -212,22 +212,25 @@ img {
 }
 
 .card h3 {
-  padding-left: 1rem;
+  --indent: 60px;
+  padding-left: var(--indent);
   font-family: var(--serif);
   font-size: 2.625rem; /* 42px: 3 × the 14px paragraph size */
+  font-weight: 400;
   line-height: 1.15;
 }
 
-/* The slash: hangs in the indent, takes no space, and, being generated
-   content, isn't selected or copied with the text. The "/ ''" part
-   gives it empty alt text so screen readers skip it too. With no
-   top/bottom set, it stays on the heading's first line; left: 0 is
-   the card's (and so the column's) left edge. */
+/* The slash: sits in the indent and takes no space. It's on the same
+   line as the title (an inline-block pulled back by a negative margin
+   exactly as wide as the indent), so it shares the title's baseline.
+   As generated content it isn't selected or copied with the text, and
+   the "/ ''" gives it empty alt text so screen readers skip it. */
 .card h3::before {
   content: "/";
   content: "/" / "";
-  position: absolute;
-  left: 0;
+  display: inline-block;
+  width: var(--indent);
+  margin-left: calc(var(--indent) * -1);
   color: color-mix(in srgb, var(--ink) 50%, var(--paper));
 }
 
@@ -245,8 +248,17 @@ img {
 .labels {
   display: flex;
   flex-wrap: wrap;
-  gap: 0 2em;
-  margin-top: 6px;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+/* Pills: the text colour screened back to 20% behind the label. */
+.labels li {
+  padding: 4px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ink) 20%, var(--paper));
+  font-size: 0.75rem; /* 12px */
+  line-height: 1;
 }
 
 /* ---------- Footer ---------- */
