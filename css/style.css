@@ -35,7 +35,7 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--sans);
-  font-size: 0.9375rem; /* 15px */
+  font-size: 0.875rem; /* 14px, all text for now */
   font-weight: 300;
   line-height: 1.6;
   text-align: left;
@@ -45,7 +45,6 @@ body {
 /* Paragraphs: first-line indent, no gap between them. */
 p {
   margin: 0;
-  font-size: 0.875rem; /* 14px */
   text-indent: 2em;
 }
 
