@@ -266,6 +266,8 @@ img {
   border-radius: 50%;
   background: var(--wildcard, var(--flag));
   vertical-align: middle;
+  position: relative;
+  top: -1px; /* optical nudge up from the lowercase centre line */
   opacity: 0;
   transition: opacity 0.2s ease;
 }
