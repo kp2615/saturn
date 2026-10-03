@@ -1,0 +1,52 @@
+/*
+  Measurement grid: a development aid, not part of the design.
+
+  Press G to show or hide it (the choice is remembered in this browser).
+  Faint line every 6px, stronger line every 30px, measured from the
+  top-center of the page: horizontal lines count down from the very top,
+  vertical lines count out left and right from the center.
+
+  It's a pseudo-element laid over the page with pointer-events off, so
+  it takes no space, moves nothing, and can't be clicked.
+  To remove it entirely, delete this file, js/grid.js, and their two
+  lines in the <head> of each page.
+*/
+
+html.show-grid {
+  position: relative;
+}
+
+html.show-grid::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: max(100%, 100vh); /* the whole page, even if it's shorter than the window */
+  z-index: 9999;
+  pointer-events: none;
+
+  --minor: rgba(0, 150, 255, 0.12);
+  --major: rgba(0, 150, 255, 0.45);
+
+  background-image:
+    /* every 30px */
+    linear-gradient(to right, var(--major) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--major) 1px, transparent 1px),
+    /* every 6px */
+    linear-gradient(to right, var(--minor) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--minor) 1px, transparent 1px);
+  background-size:
+    30px 30px,
+    30px 30px,
+    6px 6px,
+    6px 6px;
+  /* x: put a line exactly on the center (50% of the width, corrected
+     by half a tile, since % positions a tile by its own midpoint).
+     y: start at the top edge. */
+  background-position:
+    calc(50% + 15px) 0,
+    calc(50% + 15px) 0,
+    calc(50% + 3px) 0,
+    calc(50% + 3px) 0;
+}
