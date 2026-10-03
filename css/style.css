@@ -21,6 +21,19 @@
   --top: calc(var(--step) * 2);
 
   --step: 1.5rem; /* base vertical rhythm: 24px */
+
+  /* Type scale: Major Second (×1.125 per level), anchored at level 1 =
+     14px, the paragraph size. There is no level 0: level 1 steps
+     straight down to level -1. Every font size should come from here. */
+  --level-1: 0.875rem;                        /* 14px     */
+  --level-2: calc(var(--level-1) * 1.125);    /* 15.75px  */
+  --level-3: calc(var(--level-2) * 1.125);    /* 17.72px  */
+  --level-4: calc(var(--level-3) * 1.125);    /* 19.93px  */
+  --level-5: calc(var(--level-4) * 1.125);    /* 22.43px  */
+  --level-6: calc(var(--level-5) * 1.125);    /* 25.23px  */
+  --level--1: calc(var(--level-1) / 1.125);   /* 12.44px  */
+  --level--2: calc(var(--level--1) / 1.125);  /* 11.06px  */
+  --level--3: calc(var(--level--2) / 1.125);  /* 9.83px   */
 }
 
 /* ---------- Base ---------- */
@@ -41,7 +54,7 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--sans);
-  font-size: 0.875rem; /* 14px, all text for now */
+  font-size: var(--level-1);
   font-weight: 475;
   line-height: 1.6;
   text-align: left;
@@ -230,7 +243,7 @@ img {
   gap: 0 2em;
   margin-bottom: 6px;
   padding-left: var(--indent);
-  font-size: 0.75rem; /* 12px */
+  font-size: var(--level--1);
 }
 
 .card h3 {
