@@ -225,27 +225,10 @@ img {
 }
 
 /* The whole card is one link: the title's link is stretched over the
-   card, so the labels and image are clickable too. On hover the card
-   drifts 3px to the right, slowly. */
+   card, so the labels and image are clickable too. */
 .card {
   --indent: 60px;
   position: relative;
-  transition: transform 0.8s ease;
-  /* Hand the card to the GPU as its own layer, so a move this small
-     glides at sub-pixel steps instead of snapping 1px at a time. */
-  will-change: transform;
-  backface-visibility: hidden;
-}
-
-.card:hover,
-.card:focus-within {
-  transform: translateX(3px);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .card {
-    transition: none;
-  }
 }
 
 .labels {
@@ -264,6 +247,32 @@ img {
   font-size: var(--level-6);
   font-weight: 400;
   line-height: 1.15;
+}
+
+/* The wild card: on hover, a small dot fades in at the column's left
+   edge, in the indent beside the title. Its colour is the thumbnail's
+   dominant colour (set by js/wildcard.js), magenta until then.
+   It's on the title's line (an inline-block pulled back into the indent
+   with net zero width) and vertically centred on its lowercase letters,
+   like the nav flag. The + var(--optical) undoes the title's optical
+   nudge so the dot sits exactly on the column edge. */
+.card h3::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-left: calc(var(--indent) * -1 + var(--optical, 0px));
+  margin-right: calc(var(--indent) - 6px - var(--optical, 0px));
+  border-radius: 50%;
+  background: var(--wildcard, var(--flag));
+  vertical-align: middle;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.card:hover h3::before,
+.card:focus-within h3::before {
+  opacity: 1;
 }
 
 .card h3 a {
