@@ -250,6 +250,7 @@ img {
   margin-bottom: var(--step);
   padding-left: var(--indent);
   font-family: var(--serif);
+  font-size: var(--level-2);
   font-weight: 300;
 }
 
