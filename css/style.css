@@ -69,8 +69,23 @@ a {
   text-underline-offset: 0.2em;
 }
 
-a:hover {
-  text-decoration-thickness: 2px;
+/* Hover: a right-facing arrow fades in after the link. It's an
+   inline-block so the underline doesn't run beneath it, and it's
+   always there (just invisible) so nothing shifts when it appears.
+   It's drawn from the system font: Trispace's own arrow is so small
+   it reads as a hyphen at this size. */
+a::after {
+  content: "→";
+  display: inline-block;
+  font-family: var(--system);
+  margin-left: 0.5em;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+a:hover::after,
+a:focus-visible::after {
+  opacity: 1;
 }
 
 ul,
@@ -130,10 +145,6 @@ img {
 
 .site-nav a {
   text-decoration: none;
-}
-
-.site-nav a:hover {
-  text-decoration-line: underline;
 }
 
 /* The flag: a small magenta dot hanging to the left of the current page,
