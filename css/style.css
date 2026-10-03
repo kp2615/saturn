@@ -140,11 +140,25 @@ img {
   top: calc(var(--top) + 0.7em - 1cap);
   right: var(--inset);
   font-family: var(--system);
+  text-align: right;
   text-box: trim-start cap alphabetic;
 }
 
 .site-nav a {
+  position: relative;
   text-decoration: none;
+}
+
+/* In the nav the hover arrow hangs out into the right margin, so the
+   link text itself stays flush right. */
+.site-nav a::after {
+  position: absolute;
+  left: 100%;
+}
+
+/* The current page doesn't get a hover arrow; it has the flag. */
+.site-nav a[aria-current="page"]::after {
+  content: none;
 }
 
 /* The flag: a small magenta dot hanging to the left of the current page,
