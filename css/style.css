@@ -519,12 +519,13 @@ html.frame-window body::before {
   margin: calc(var(--step) * 2) 0 var(--step);
 }
 
-/* Subheadings: Trispace at level -1, weight 500. */
+/* Subheadings: Trispace at level -1, weight 400, in pure black. */
 .project-body h3 {
   margin: calc(var(--step) * 2) 0 var(--step);
+  color: #000;
   font-family: var(--sans);
   font-size: var(--level--1);
-  font-weight: 500;
+  font-weight: 400;
   font-style: normal;
 }
 
