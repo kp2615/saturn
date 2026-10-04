@@ -1,10 +1,11 @@
 // Wild card colour.
 //
-// Each work card shows a small dot (the "wild card") on hover. This takes
-// the dot's colour from the card's own thumbnail: it shrinks the image to
+// A small dot, the "wild card", sits beside a title (on work cards it
+// appears on hover). This takes the dot's colour from an image: for each
+// element marked data-wildcard, it takes the first image inside, shrinks it to
 // a tiny grid, sorts the pixels into coarse colour buckets, picks the
 // bucket with the most pixels (the dominant colour), and averages the
-// pixels in it. The result goes in the card's --wildcard; if anything
+// pixels in it. The result goes in that element's --wildcard; if anything
 // fails, the dot falls back to the site's magenta.
 (function () {
   var W = 48;
@@ -36,19 +37,19 @@
     return "rgb(" + Math.round(best.r / best.n) + " " + Math.round(best.g / best.n) + " " + Math.round(best.b / best.n) + ")";
   }
 
-  function apply(card, img) {
+  function apply(el, img) {
     try {
       var colour = dominant(img);
-      if (colour) card.style.setProperty("--wildcard", colour);
+      if (colour) el.style.setProperty("--wildcard", colour);
     } catch (e) {
       // e.g. an image from another site that won't let us read its pixels
     }
   }
 
-  document.querySelectorAll(".card").forEach(function (card) {
-    var img = card.querySelector("img");
+  document.querySelectorAll("[data-wildcard]").forEach(function (el) {
+    var img = el.querySelector("img");
     if (!img) return;
-    if (img.complete && img.naturalWidth) apply(card, img);
-    else img.addEventListener("load", function () { apply(card, img); });
+    if (img.complete && img.naturalWidth) apply(el, img);
+    else img.addEventListener("load", function () { apply(el, img); });
   });
 })();

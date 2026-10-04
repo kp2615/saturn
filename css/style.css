@@ -136,10 +136,11 @@ img {
   padding: var(--top) 0 calc(var(--step) * 4) var(--inset);
 }
 
-/* Images may break out of the column to the right. */
+/* Images may break out of the column to the right, stopping short of
+   the pinned nav (roughly 240px is kept clear for it). */
 .breakout {
-  width: calc(100vw - var(--inset) * 2);
-  max-width: 1200px;
+  width: min(1200px, 100vw - var(--inset) * 2 - 240px);
+  max-width: none;
 }
 
 .section {
@@ -204,9 +205,9 @@ img {
 
 /* ---------- Home ---------- */
 
-/* The opening paragraph is the one exception to the indent rule. Its
-   first line is trimmed to cap height so it can share a baseline with
-   the nav (see .site-nav). */
+/* The opening line of every page is the one exception to the indent
+   rule. Its first line is trimmed to cap height so it can share a
+   baseline with the nav (see .site-nav). It must be level 1 Trispace. */
 .lead {
   text-indent: 0;
   text-box: trim-start cap alphabetic;
@@ -252,14 +253,16 @@ img {
   line-height: 1.15;
 }
 
-/* The wild card: on hover, a small dot fades in at the column's left
-   edge, in the indent beside the title. Its colour is the thumbnail's
-   dominant colour (set by js/wildcard.js), magenta until then.
+/* The wild card: a small dot at the column's left edge, in the indent
+   beside a title. Its colour is the dominant colour of the nearest
+   [data-wildcard] element's first image (set by js/wildcard.js),
+   magenta until then. On cards it fades in on hover; on a project page
+   it's always shown.
    It's on the title's line (an inline-block pulled back into the indent
    with net zero width) and vertically centred on its lowercase letters,
    like the nav flag. The + var(--optical) undoes the title's optical
    nudge so the dot sits exactly on the column edge. */
-.card h3::before {
+.wildcard::before {
   content: "";
   display: inline-block;
   width: 6px;
@@ -271,12 +274,15 @@ img {
   vertical-align: middle;
   position: relative;
   top: -1px; /* optical nudge up from the lowercase centre line */
-  opacity: 0;
   transition: opacity 0.2s ease;
 }
 
-.card:hover h3::before,
-.card:focus-within h3::before {
+.card .wildcard::before {
+  opacity: 0;
+}
+
+.card:hover .wildcard::before,
+.card:focus-within .wildcard::before {
   opacity: 1;
 }
 
@@ -304,7 +310,7 @@ img {
   inset: 0;
 }
 
-/* No hover arrow on card titles; the card's drift is the hover cue. */
+/* No hover arrow on card titles; the wild card is the hover cue. */
 .card h3 a::after {
   content: none;
 }
@@ -313,6 +319,96 @@ img {
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
+}
+
+/* ---------- Project page ---------- */
+
+/* The breadcrumb's link skips the hover arrow: its reserved space would
+   open a gap before the slash. */
+.crumb a::after {
+  content: none;
+}
+
+.project-head {
+  margin-top: calc(var(--step) * 3);
+}
+
+.project-title {
+  padding-left: var(--indent);
+  font-family: var(--serif);
+  font-size: var(--level-10);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+/* Year, client, role…: a row of small columns on the indent. */
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 36px;
+  margin: var(--step) 0 0;
+  padding-left: var(--indent);
+}
+
+.facts dt {
+  font-size: var(--level--1);
+  font-weight: 590;
+}
+
+.facts dd {
+  margin: 0;
+}
+
+.project-hero {
+  margin-top: calc(var(--step) * 2);
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.project-body {
+  margin-top: calc(var(--step) * 3);
+}
+
+.project-body h2 {
+  margin: calc(var(--step) * 2) 0 var(--step);
+}
+
+.project-body h2:first-child {
+  margin-top: 0;
+}
+
+figure {
+  margin: calc(var(--step) * 2) 0;
+}
+
+figure img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+figcaption {
+  margin-top: 6px;
+  padding-left: var(--indent);
+  font-size: var(--level--1);
+}
+
+/* Two images side by side within the column. */
+.pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.pair img {
+  aspect-ratio: 4 / 5;
+}
+
+.next-project {
+  margin-top: calc(var(--step) * 5);
+}
+.next-project > h2 {
+  margin-bottom: var(--step);
 }
 
 /* ---------- Footer ---------- */
