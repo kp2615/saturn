@@ -141,9 +141,9 @@ cite {
 }
 
 /* Highlight: the text itself is unchanged; only a light purple (the
-   ink at 12%) sits behind it. */
+   ink at 9%) sits behind it. */
 mark {
-  background: color-mix(in srgb, var(--ink) 12%, var(--paper));
+  background: color-mix(in srgb, var(--ink) 9%, var(--paper));
   color: inherit;
 }
 
