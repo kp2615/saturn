@@ -519,6 +519,16 @@ html.frame-window body::before {
   margin: calc(var(--step) * 2) 0 var(--step);
 }
 
+/* Subheadings take the section headings' former style: Trispace at
+   level 1 and the default weight, with the same spacing. */
+.project-body h3 {
+  margin: calc(var(--step) * 2) 0 var(--step);
+  font-family: var(--sans);
+  font-size: var(--level-1);
+  font-weight: inherit;
+  font-style: normal;
+}
+
 /* Project page section headings are set like <em>: Newsreader italic at
    regular weight, scaled to match Trispace's x-height. */
 :is(.project-body, .next-project) h2 {
