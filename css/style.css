@@ -357,6 +357,8 @@ img {
 
 .facts dd {
   margin: 0;
+  font-family: var(--serif);
+  font-weight: 590;
 }
 
 .project-hero {
