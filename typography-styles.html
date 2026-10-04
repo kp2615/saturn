@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Typography styles — Saturn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Trispace:wdth,wght@75..125,100..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/grid.css">
+<script src="js/grid.js"></script>
+<script src="js/optical.js" defer></script>
+<script src="js/wildcard.js" defer></script>
+<!--
+  A test bench, not a designed page: every element below is shown with the
+  site's base styles only, and nothing added here. If something looks wrong
+  on this page, it will look wrong wherever that element is used.
+-->
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="site-nav">
+    <ul>
+      <li><a href="index.html">Kyle Schumacher-Picone</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <p class="lead" data-optical>Typography styles. Every standard element with the site’s base styles, for checking how they interact. Press G for the measurement grid.</p>
+
+    <!-- ===================================================== -->
+    <section class="section">
+      <h2>1. Type scale</h2>
+      <p style="font-size: var(--level-10)">Level 10 — 40.41px Trispace</p>
+      <p style="font-size: var(--level-6)">Level 6 — 25.23px Trispace</p>
+      <p style="font-size: var(--level-5)">Level 5 — 22.43px Trispace</p>
+      <p style="font-size: var(--level-4)">Level 4 — 19.93px Trispace</p>
+      <p style="font-size: var(--level-3)">Level 3 — 17.72px Trispace</p>
+      <p style="font-size: var(--level-2)">Level 2 — 15.75px Trispace</p>
+      <p style="font-size: var(--level-1)">Level 1 — 14px Trispace</p>
+      <p style="font-size: var(--level--1)">Level −1 — 12.44px Trispace</p>
+      <p style="font-size: var(--level--2)">Level −2 — 11.06px Trispace</p>
+      <p style="font-size: var(--level--3)">Level −3 — 9.83px Trispace</p>
+      <p style="font-family: var(--serif); font-size: var(--level-10)">Level 10 — Newsreader</p>
+      <p style="font-family: var(--serif); font-size: var(--level-6)">Level 6 — Newsreader</p>
+      <p style="font-family: var(--serif); font-size: var(--level-3)">Level 3 — Newsreader</p>
+      <p style="font-family: var(--serif); font-size: var(--level-1)">Level 1 — Newsreader</p>
+      <p style="font-family: var(--system); font-size: var(--level-1)">Level 1 — System UI</p>
+      <p style="font-family: var(--system); font-size: var(--level--1)">Level −1 — System UI</p>
+    </section>
+
+    <!-- ===================================================== -->
+    <section class="section">
+      <h2>2. Weights</h2>
+      <p style="font-weight: 300">Trispace 300 — The quick brown fox jumps over the lazy dog</p>
+      <p style="font-weight: 400">Trispace 400 — The quick brown fox jumps over the lazy dog</p>
+      <p>Trispace 475 (default) — The quick brown fox jumps over the lazy dog</p>
+      <p style="font-weight: 590">Trispace 590 — The quick brown fox jumps over the lazy dog</p>
+      <p style="font-weight: 700">Trispace 700 — The quick brown fox jumps over the lazy dog</p>
+      <p style="font-family: var(--serif); font-weight: 300">Newsreader 300 — The quick brown fox jumps over the lazy dog</p>
+      <p style="font-family: var(--serif); font-weight: 400">Newsreader 400 — The quick brown fox jumps over the lazy dog</p>
+      <p style="font-family: var(--serif); font-weight: 590">Newsreader 590 — The quick brown fox jumps over the lazy dog</p>
+    </section>
+
+    <!-- ===================================================== -->
+    <section class="section">
+      <h2>3. Headings h1–h6</h2>
+      <h1>Heading 1 — The restraint that years of work have taught</h1>
+      <h2>Heading 2 — The restraint that years of work have taught</h2>
+      <h3>Heading 3 — The restraint that years of work have taught</h3>
+      <h4>Heading 4 — The restraint that years of work have taught</h4>
+      <h5>Heading 5 — The restraint that years of work have taught</h5>
+      <h6>Heading 6 — The restraint that years of work have taught</h6>
+    </section>
+
+    <!-- ===================================================== -->
+    <section class="section">
+      <h2>4. Running text</h2>
+      <p>A first paragraph, long enough to wrap several times so the measure, the leading and the first-line indent can all be judged together. Design is the sum of small decisions, most of them invisible when they are made well and glaring when they are not.</p>
+      <p>A second paragraph follows with no space between, which is the convention when paragraphs are marked by an indent. It continues for a few lines so the rhythm of indented openings against flush continuation lines is easy to read down the left edge.</p>
+      <p>Short one.</p>
+      <p>A paragraph containing a very long unbroken string, the kind that arrives with links pasted in: https://kp2615.github.io/saturn/work/project-one.html?utm_source=a-very-long-campaign-name-that-will-not-break and a German compound, Donaudampfschifffahrtsgesellschaftskapitän, to see whether the column overflows.</p>
+    </section>
+
+    <!-- ===================================================== -->
+    <section class="section">
+      <h2>5. Inline elements</h2>
+      <p>This sentence has <a href="#">a link</a>, <a href="#">a second link that runs long enough to wrap onto the next line if the measure is narrow</a>, <strong>strong text</strong>, <b>bold text</b>, <em>emphasised text</em>, <i>italic text</i>, <strong><em>strong emphasis</em></strong>, <small>small text</small>, <mark>highlighted text</mark>, <u>underlined text</u>, <s>struck text</s>, <del>deleted text</del> and <ins>inserted text</ins>.</p>
+      <p>Code and technical: <code>const indent = "60px";</code>, keyboard <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>, sample output <samp>Build succeeded</samp>, variable <var>x</var>, abbreviation <abbr title="Cascading Style Sheets">CSS</abbr>, a <dfn>definition</dfn>, a date <time datetime="2026-10-04">4 October 2026</time>, data <data value="42">forty-two</data>.</p>
+      <p>Positioning: H<sub>2</sub>O, E = mc<sup>2</sup>, a footnote marker<sup><a href="#">1</a></sup>, and <q>an inline quotation with its own marks</q> from <cite>A Book Title</cite>.</p>
+      <p>Punctuation and figures: “curly quotes” and ‘single quotes’, it’s, en dash 1990–2026, em dash—like this, ellipsis… 1/2 ½ 3×4 −5 £10 €20 $30 #1 @ & % © ® ™ † ‡ § ¶ → ← ↑ ↓.</p>
+      <p>Numerals: 0123456789 and old-style check 1234567890; tabular: 111.11 / 999.99.</p>
+      <p>Accents and Latin Extended: Café, naïve, Ångström, Zürich, Kraków, Łódź, São Paulo, Ærøskøbing, İstanbul, Dvořák, ﬁne ﬂow (ligatures).</p>
+    </section>
+
+    <!-- ===================================================== -->
+    <section class="section">
+      <h2>6. Lists</h2>
+      <ul>
+        <li>Unordered item one</li>
+        <li>Unordered item two, long enough to wrap onto a second line so the hanging behaviour of the wrapped line can be seen</li>
+        <li>Unordered item three
+          <ul>
+            <li>Nested item</li>
+            <li>Nested item</li>
+          </ul>
+        </li>
+      </ul>
+      <br>
+      <ol>
+        <li>Ordered item one</li>
+        <li>Ordered item two</li>
+        <li>Ordered item three
+          <ol>
+            <li>Nested ordered item</li>
+          </ol>
+        </li>
+      </ol>
+      <br>
+      <dl>
+        <dt>Definition term</dt>
+        <dd>Definition description, which can run to a couple of lines when the term needs explaining in full.</dd>
+        <dt>Another term</dt>
+        <dd>Another description.</dd>
+      </dl>
+    </section>
+
+    <!-- ===================================================== -->
+    <section class="section">
+      <h2>7. Quotations</h2>
+      <blockquote>
+        <p>A block quotation. Good design is as little design as possible. Less, but better, because it concentrates on the essential aspects.</p>
+        <p>A second paragraph inside the same quotation.</p>
+        <footer>— <cite>Dieter Rams</cite></footer>
+      </blockquote>
+      <p>A paragraph after the quotation, to see the spacing on the way out.</p>
+    </section>
+
+    <!-- ===================================================== -->
+    <section class="section">
+      <h2>8. Preformatted text</h2>
+      <pre><code>.card h3 {
+  padding-left: var(--indent);
+  font-family: var(--serif);
+  font-size: var(--level-6);
+}
+// A very long line that runs past the column to see whether preformatted text scrolls, wraps, or overflows into the margin.</code></pre>
+    </section>
+
+    <!-- ===================================================== -->
+    <section class="section">
+      <h2>9. Table</h2>
+      <table>
+        <caption>Table caption</caption>
+        <thead>
+          <tr><th>Project</th><th>Year</th><th>Role</th><th>Hours</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Project One</td><td>2026</td><td>Design direction</td><td>120</td></tr>
+          <tr><td>Project Two</td><td>2025</td><td>Product design</td><td>1,480</td></tr>
+          <tr><td>Project Three</td><td>2024</td><td>Type design</td><td>36</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td>Total</td><td></td><td></td><td>1,636</td></tr>
+        </tfoot>
+      </table>
+    </section>
+
+    <!-- ===================================================== -->
+    <section class="section">
+      <h2>10. Rules, address, details</h2>
+      <p>Text above a horizontal rule.</p>
+      <hr>
+      <p>Text below a horizontal rule.</p>
+      <address>Kyle Schumacher-Picone<br>New York, NY<br><a href="mailto:hello@example.com">hello@example.com</a></address>
+      <details>
+        <summary>A disclosure summary (click to open)</summary>
+        <p>Hidden content revealed by the disclosure.</p>
+      </details>
+    </section>
+
+    <!-- ===================================================== -->
+    <section class="section">
+      <h2>11. Forms</h2>
+      <form onsubmit="return false">
+        <p><label for="t-name">Name</label><br><input id="t-name" type="text" placeholder="Placeholder text"></p>
+        <p><label for="t-email">Email</label><br><input id="t-email" type="email" value="hello@example.com"></p>
+        <p><label for="t-topic">Topic</label><br><select id="t-topic"><option>Option one</option><option>Option two</option></select></p>
+        <p><label for="t-msg">Message</label><br><textarea id="t-msg" rows="3">Text area content.</textarea></p>
+        <p><label><input type="checkbox" checked> A checkbox</label> <label><input type="radio" name="r" checked> A radio</label></p>
+        <p><button type="submit">A button</button> <input type="submit" value="Submit input"></p>
+      </form>
+    </section>
+
+    <!-- ===================================================== -->
+    <section class="section">
+      <h2>12. Images</h2>
+      <figure>
+        <img src="images/placeholder-2.png" alt="" width="1600" height="900">
+        <figcaption>A figure at column width, with a caption long enough to wrap onto a second line so its indent and leading can be checked.</figcaption>
+      </figure>
+      <figure class="breakout">
+        <img src="images/placeholder-3.png" alt="" width="1600" height="900">
+        <figcaption>A breakout figure.</figcaption>
+      </figure>
+      <p>A bare image, no figure:</p>
+      <img src="images/placeholder-1.png" alt="" width="800" height="450">
+    </section>
+
+    <!-- ===================================================== -->
+    <section class="section">
+      <h2>13. Site components</h2>
+
+      <article data-wildcard>
+        <ul class="labels" data-optical>
+          <li>Brand identity</li>
+          <li>Editorial design</li>
+          <li>A label long enough to wrap</li>
+          <li>Wayfinding</li>
+          <li>Type design</li>
+        </ul>
+        <h1 class="project-title wildcard" data-optical>A project title long enough to wrap onto a second line</h1>
+        <dl class="facts" data-optical>
+          <div><dt>Year</dt><dd>2026</dd></div>
+          <div><dt>Client</dt><dd>A client with a long name</dd></div>
+          <div><dt>Role</dt><dd>Design direction</dd></div>
+          <div><dt>Collaborators</dt><dd>Several people</dd></div>
+        </dl>
+        <img class="project-hero breakout" src="images/placeholder-1.png" alt="" width="1600" height="900">
+      </article>
+
+      <ul class="cards" style="margin-top: calc(var(--step) * 3)">
+        <li class="card" data-wildcard>
+          <ul class="labels" data-optical>
+            <li>Product design</li>
+          </ul>
+          <h3 class="wildcard" data-optical><a href="#">A card title long enough to wrap onto a second line in the column</a></h3>
+          <img src="images/placeholder-2.png" alt="" width="1600" height="900">
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a href="mailto:hello@example.com">hello@example.com</a>
+  </footer>
+
+</div>
+</body>
+</html>
