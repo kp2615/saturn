@@ -111,13 +111,38 @@ a {
 }
 
 /* Italics are set in Newsreader: Trispace has no true italic, so the
-   browser would otherwise fake one by slanting the upright letters. */
+   browser would otherwise fake one by slanting the upright letters.
+
+   Newsreader italic is scaled up so its x-height matches Trispace's.
+   Measured from the drawn letters (x and z, at weight 475, Newsreader at
+   its 14px optical size): Trispace x-height = 0.500em, Newsreader italic
+   = 0.480em, so 0.500 / 0.480 ≈ 1.042. (The fonts' built-in x-height
+   metrics disagree with the drawn letters, so font-size-adjust would
+   overshoot; hence a measured value.) */
+:root {
+  --italic-scale: 1.042;
+}
+
 em,
 i,
 cite,
 address {
   font-family: var(--serif);
   font-style: italic;
+  font-size: calc(1em * var(--italic-scale));
+}
+
+/* Inline italics keep the line's spacing: a line-height of 1 keeps the
+   slightly larger italic from pushing its line apart from the others. */
+em,
+i,
+cite {
+  line-height: 1;
+}
+
+/* Italic inside italic shouldn't scale twice. */
+:is(em, i, cite, address) :is(em, i, cite, address) {
+  font-size: 1em;
 }
 
 /* Lists. Any list with a class is a component (nav, cards, labels…)
