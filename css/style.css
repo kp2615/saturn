@@ -124,7 +124,9 @@ address {
    indent and its bullet or number hangs at the column edge, the way the
    wild card hangs beside a title. Nested lists step in by another
    indent. */
-:is(ul, ol)[class] {
+/* :where() gives this reset zero specificity, so a component's own
+   rules (e.g. .labels' indent) always win over it. */
+:where(ul[class], ol[class]) {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -173,6 +175,35 @@ img {
    the element left by that amount so the ink itself sits on the edge. */
 [data-optical] {
   margin-left: calc(var(--optical, 0px) * -1);
+}
+
+/* ---------- Frame ---------- */
+
+/*
+  The page appears as a rounded white window floating on black.
+  A fixed overlay sits just inside the browser window with rounded
+  corners; its enormous box-shadow paints everything outside it black.
+  It doesn't move or take space, and clicks pass straight through it,
+  so the page scrolls underneath as normal.
+*/
+:root {
+  --frame: 12px;        /* black margin around the window (2 grid units) */
+  --frame-radius: 18px; /* corner radius of the window */
+  --frame-colour: #000;
+}
+
+html {
+  background: var(--frame-colour); /* shows during overscroll bounce */
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: var(--frame);
+  z-index: 100;
+  border-radius: var(--frame-radius);
+  box-shadow: 0 0 0 100vmax var(--frame-colour);
+  pointer-events: none;
 }
 
 /* ---------- Layout ---------- */
