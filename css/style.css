@@ -187,9 +187,9 @@ img {
   so the page scrolls underneath as normal.
 */
 :root {
-  --frame: 12px;        /* black margin around the window (2 grid units) */
+  --frame: 24px;        /* margin around the window (4 grid units) */
   --frame-radius: 18px; /* corner radius of the window */
-  --frame-colour: #000;
+  --frame-colour: #1a1226; /* midnight purple, from the ink's hue */
 }
 
 html {
