@@ -519,13 +519,12 @@ html.frame-window body::before {
   margin: calc(var(--step) * 2) 0 var(--step);
 }
 
-/* Subheadings take the section headings' former style: Trispace at
-   level 1 and the default weight, with the same spacing. */
+/* Subheadings: Trispace at level -1, weight 500. */
 .project-body h3 {
   margin: calc(var(--step) * 2) 0 var(--step);
   font-family: var(--sans);
-  font-size: var(--level-1);
-  font-weight: inherit;
+  font-size: var(--level--1);
+  font-weight: 500;
   font-style: normal;
 }
 
