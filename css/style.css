@@ -238,6 +238,7 @@ img {
   margin-bottom: 6px;
   padding-left: var(--indent);
   font-size: var(--level--1);
+  font-weight: 590;
 }
 
 .card h3 {
