@@ -17,6 +17,9 @@
   --measure: 605px;
   /* Left inset of the column; everything hangs from this edge. */
   --inset: clamp(16px, 4vw, 64px);
+  /* The site's one indent: paragraph first lines, card labels and
+     project titles all start this far in from the column edge. */
+  --indent: 60px;
   /* Distance from the top of the window to the first line of text. */
   --top: calc(var(--step) * 2);
 
@@ -68,7 +71,7 @@ body {
 /* Paragraphs: first-line indent, no gap between them. */
 p {
   margin: 0;
-  text-indent: 2em;
+  text-indent: var(--indent);
 }
 
 h1,
@@ -227,7 +230,6 @@ img {
 /* The whole card is one link: the title's link is stretched over the
    card, so the labels and image are clickable too. */
 .card {
-  --indent: 60px;
   position: relative;
 }
 
