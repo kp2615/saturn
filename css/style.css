@@ -16,12 +16,13 @@
   /* 40% of a 14" MacBook Pro's default 1512px-wide viewport. */
   --measure: 605px;
   /* Left inset of the column; everything hangs from this edge. */
-  --inset: clamp(16px, 4vw, 64px);
+  /* Measured from the inside of the frame (see Frame below). */
+  --inset: calc(var(--frame) + clamp(16px, 4vw, 64px));
   /* The site's one indent: paragraph first lines, card labels and
      project titles all start this far in from the column edge. */
   --indent: 60px;
   /* Distance from the top of the window to the first line of text. */
-  --top: calc(var(--step) * 2);
+  --top: calc(var(--frame) + var(--step) * 2);
 
   --step: 1.5rem; /* base vertical rhythm: 24px */
 
@@ -211,7 +212,7 @@ body::before {
 /* The column: hard left, generous empty space to the right. */
 .wrap {
   max-width: calc(var(--measure) + var(--inset));
-  padding: var(--top) 0 calc(var(--step) * 4) var(--inset);
+  padding: var(--top) 0 calc(var(--frame) + var(--step) * 4) var(--inset);
 }
 
 /* Images may break out of the column to the right, stopping short of
