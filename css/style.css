@@ -519,6 +519,14 @@ html.frame-window body::before {
   margin: calc(var(--step) * 2) 0 var(--step);
 }
 
+/* Project page section headings are set like <em>: Newsreader italic at
+   regular weight, scaled to match Trispace's x-height. */
+:is(.project-body, .next-project) h2 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: calc(var(--level-1) * var(--italic-scale));
+}
+
 .project-body h2:first-child {
   margin-top: 0;
 }
