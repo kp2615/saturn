@@ -89,12 +89,14 @@ a {
   text-underline-offset: 0.2em;
 }
 
-/* Hover: a right-facing arrow fades in after the link. It's an
-   inline-block so the underline doesn't run beneath it, and it's
-   always there (just invisible) so nothing shifts when it appears.
-   It's drawn from the system font: Trispace's own arrow is so small
-   it reads as a hyphen at this size. */
-a::after {
+/* Hover arrow: an ornament for free-standing links only — the nav,
+   the footer, and any link given class="standalone". Links inside
+   running text (paragraphs, headings, lists…) never get it.
+   A right-facing arrow fades in after the link. It's an inline-block so
+   the underline doesn't run beneath it, and it's always there (just
+   invisible) so nothing shifts when it appears. It's drawn from the
+   system font: Trispace's own arrow is so small it reads as a hyphen. */
+:is(.site-nav a, .site-footer a, a.standalone)::after {
   content: "→";
   display: inline-block;
   font-family: var(--system);
@@ -103,16 +105,61 @@ a::after {
   transition: opacity 0.2s ease;
 }
 
-a:hover::after,
-a:focus-visible::after {
+:is(.site-nav a, .site-footer a, a.standalone):is(:hover, :focus-visible)::after {
   opacity: 1;
 }
 
-ul,
-ol {
+/* Italics are set in Newsreader: Trispace has no true italic, so the
+   browser would otherwise fake one by slanting the upright letters. */
+em,
+i,
+cite,
+address {
+  font-family: var(--serif);
+  font-style: italic;
+}
+
+/* Lists. Any list with a class is a component (nav, cards, labels…)
+   and starts bare. A plain <ul>/<ol> is content: its text starts on the
+   indent and its bullet or number hangs at the column edge, the way the
+   wild card hangs beside a title. Nested lists step in by another
+   indent. */
+:is(ul, ol)[class] {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+:is(ul, ol):not([class]) {
+  margin: 0;
+  padding-left: var(--indent);
+  list-style: none;
+}
+
+:is(ul, ol):not([class]) > li {
+  position: relative;
+}
+
+:is(ul, ol):not([class]) > li::before {
+  position: absolute;
+  left: calc(var(--indent) * -1);
+}
+
+ul:not([class]) > li::before {
+  content: "•";
+}
+
+ol:not([class]) {
+  counter-reset: item;
+}
+
+ol:not([class]) > li {
+  counter-increment: item;
+}
+
+ol:not([class]) > li::before {
+  content: counter(item) ".";
+  font-variant-numeric: tabular-nums;
 }
 
 img {
@@ -310,11 +357,6 @@ img {
   inset: 0;
 }
 
-/* No hover arrow on card titles; the wild card is the hover cue. */
-.card h3 a::after {
-  content: none;
-}
-
 .card img {
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -322,12 +364,6 @@ img {
 }
 
 /* ---------- Project page ---------- */
-
-/* The breadcrumb's link skips the hover arrow: its reserved space would
-   open a gap before the slash. */
-.crumb a::after {
-  content: none;
-}
 
 .project-head {
   margin-top: calc(var(--step) * 3);
