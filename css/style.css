@@ -181,23 +181,58 @@ img {
 /* ---------- Frame ---------- */
 
 /*
-  The page appears as a rounded white window floating on black.
-  A fixed overlay sits just inside the browser window with rounded
-  corners; its enormous box-shadow paints everything outside it black.
-  It doesn't move or take space, and clicks pass straight through it,
-  so the page scrolls underneath as normal.
+  The page floats on midnight purple. Two treatments; the sheet is the
+  default, and adding class="frame-window" to <html> switches to the
+  window.
+
+  Sheet: the page itself (<body>) is a white rounded sheet with a margin
+  of purple all round. It scrolls as one piece, so its rounded corners
+  show at the very top and bottom of the page.
+
+  Window: a fixed, click-through overlay with rounded corners and an
+  enormous purple box-shadow frames the browser window; the page
+  scrolls underneath it, so the corners are always visible.
+
+  In both, --inset and --top are measured from the browser's edge and
+  already include the frame, so the fixed nav lines up either way.
 */
 :root {
-  --frame: 48px;        /* margin around the window (8 grid units) */
-  --frame-radius: 18px; /* corner radius of the window */
+  --frame: 48px;        /* purple margin around the page (8 grid units) */
+  --frame-radius: 18px; /* corner radius */
   --frame-colour: #1a1226; /* midnight purple, from the ink's hue */
 }
 
 html {
-  background: var(--frame-colour); /* shows during overscroll bounce */
+  background: var(--frame-colour);
 }
 
-body::before {
+/* Sheet (default) */
+body {
+  margin: var(--frame);
+  min-height: calc(100vh - var(--frame) * 2);
+  border-radius: var(--frame-radius);
+}
+
+/* The sheet's own margin already supplies the frame, so the column's
+   padding takes it back out. */
+.wrap {
+  max-width: calc(var(--measure) + var(--inset) - var(--frame));
+  padding: calc(var(--top) - var(--frame)) 0 calc(var(--step) * 4) calc(var(--inset) - var(--frame));
+}
+
+/* Window */
+html.frame-window body {
+  margin: 0;
+  min-height: 0;
+  border-radius: 0;
+}
+
+html.frame-window .wrap {
+  max-width: calc(var(--measure) + var(--inset));
+  padding: var(--top) 0 calc(var(--frame) + var(--step) * 4) var(--inset);
+}
+
+html.frame-window body::before {
   content: "";
   position: fixed;
   inset: var(--frame);
@@ -210,10 +245,9 @@ body::before {
 /* ---------- Layout ---------- */
 
 /* The column: hard left, generous empty space to the right. */
-.wrap {
-  max-width: calc(var(--measure) + var(--inset));
-  padding: var(--top) 0 calc(var(--frame) + var(--step) * 4) var(--inset);
-}
+/* .wrap's width and padding depend on the frame treatment, so they
+   are set in the Frame section above. The text column inside is always
+   --measure (605px) wide. */
 
 /* Images may break out of the column to the right, stopping short of
    the pinned nav (roughly 240px is kept clear for it). */
