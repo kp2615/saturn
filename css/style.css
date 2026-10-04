@@ -392,6 +392,7 @@ figure img {
 figcaption {
   margin-top: 6px;
   padding-left: var(--indent);
+  font-family: var(--system);
   font-size: var(--level--1);
 }
 
