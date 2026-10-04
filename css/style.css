@@ -110,6 +110,16 @@ a {
   opacity: 1;
 }
 
+/* Links in paragraphs screen back slightly on hover (the ink mixed 30%
+   toward the paper), underline included. */
+p a {
+  transition: color 0.2s ease;
+}
+
+p a:is(:hover, :focus-visible) {
+  color: color-mix(in srgb, var(--ink) 70%, var(--paper));
+}
+
 /* Italics are set in Newsreader: Trispace has no true italic, so the
    browser would otherwise fake one by slanting the upright letters.
 
