@@ -140,6 +140,13 @@ cite {
   line-height: 1;
 }
 
+/* Highlight: the text itself is unchanged; only a light purple (the
+   ink at 12%) sits behind it. */
+mark {
+  background: color-mix(in srgb, var(--ink) 12%, var(--paper));
+  color: inherit;
+}
+
 /* Italic inside italic shouldn't scale twice. */
 :is(em, i, cite, address) :is(em, i, cite, address) {
   font-size: 1em;
