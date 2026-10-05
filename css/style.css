@@ -519,10 +519,17 @@ html.frame-window body::before {
   margin: calc(var(--step) * 2) 0 var(--step);
 }
 
-/* Subheadings: Trispace at level -1, weight 400, in pure black. */
+/* On project pages every heading from h2 down is pure black, the one
+   departure from the purple ink. (Card titles are links, not headings
+   of the write-up, so they keep the ink.) */
+.project-body :is(h2, h3, h4, h5, h6),
+.next-project > h2 {
+  color: #000;
+}
+
+/* Subheadings: Trispace at level -1, weight 400. */
 .project-body h3 {
   margin: calc(var(--step) * 2) 0 var(--step);
-  color: #000;
   font-family: var(--sans);
   font-size: var(--level--1);
   font-weight: 400;
